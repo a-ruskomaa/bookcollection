@@ -4,6 +4,7 @@ import com.example.bookcollection.data.dto.BookDTO
 import com.example.bookcollection.data.entity.Book
 import com.example.bookcollection.data.repository.BookRepository
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @Service
 class BookService(private val bookRepository: BookRepository) {
@@ -24,6 +25,7 @@ class BookService(private val bookRepository: BookRepository) {
         existing.title = dto.title
         existing.author = dto.author
         existing.description = dto.description
+        existing.modifiedAt = LocalDateTime.now()
 
         return bookRepository.save(dto.toBook()).toBookDTO()
     }

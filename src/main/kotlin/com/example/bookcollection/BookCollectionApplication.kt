@@ -1,4 +1,4 @@
-package com.example.book_collection
+package com.example.bookcollection
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

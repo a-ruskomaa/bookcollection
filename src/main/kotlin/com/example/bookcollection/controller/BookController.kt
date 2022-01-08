@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 import java.lang.IllegalArgumentException
 
 @RestController
-@RequestMapping("books")
+@RequestMapping("api/books")
 class BookController(private val bookService: BookService) {
 
     @GetMapping("/")

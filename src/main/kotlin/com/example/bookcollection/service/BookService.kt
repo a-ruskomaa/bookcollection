@@ -15,12 +15,12 @@ class BookService(private val bookRepository: BookRepository) {
 
     fun addBook(dto: BookDTO) = bookRepository.save(dto.toBook()).toBookDTO()
 
-    fun updateBook(dto: BookDTO): BookDTO {
-        if (dto.id == null) {
-            throw IllegalArgumentException("Id can't be null")
+    fun updateBook(bookId: Long, dto: BookDTO): BookDTO {
+        if (dto.id != bookId) {
+            throw IllegalArgumentException("Id's must match")
         }
 
-        val existing = bookRepository.findById(dto.id).orElseThrow()
+        val existing = bookRepository.findById(bookId).orElseThrow()
 
         existing.title = dto.title
         existing.author = dto.author

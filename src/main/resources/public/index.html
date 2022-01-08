@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book collection</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="flex-item">
+                <form class="book-form" id="book-form">
+                    <input type="hidden" id="book-form-id">
+                    <div class="form-item">
+                        <label for="book-form-title">
+                            Title
+                        </label>
+                        <input type="text" id="book-form-title">
+                    </div>
+                    <div class="form-item">
+                        <label for="book-form-author">
+                            Author
+                        </label>
+                        <input type="text" id="book-form-author">
+                    </div>
+                    <div class="form-item">
+                        <label for="book-form-description">
+                            Description
+                        </label>
+                        <textarea id="book-form-description"></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button id="book-form-save-new">Save New</button>
+                        <button id="book-form-save">Save</button>
+                        <button id="book-form-delete">Delete</button>
+                        <button id="book-form-clear" hidden="true"></button>
+                    </div>
+                </form>
+            </div>
+            <div class="flex-item">
+                <select size="10" class="book-list" id="book-list">
+                    <option value="-1">Add new</option>
+                </select>
+            </div>
+        </div>
+    </body>
+</html>

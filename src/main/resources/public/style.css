@@ -1,0 +1,64 @@
+.container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-item {
+    flex: 1;
+    margin: 10px;
+}
+
+.form-item {
+    margin: 15px 0;
+}
+
+.form-item > input {
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid dimgray;
+}
+
+.form-item > textarea {
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 3rem;
+    border-radius: 5px;
+    border: 1px solid dimgray;
+}
+
+.form-item > label {
+    display:inline-block;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+}
+
+.form-buttons {
+    margin: 10px 0;
+}
+
+.form-buttons > button {
+    font-family: sans-serif;
+    margin: 5px 10px;
+    padding: 10px;
+    border: 1px solid dimgray;
+    border-radius: 5px;
+    background: lightgrey;
+}
+
+.form-buttons > button:hover {
+    background: darkgrey;
+}
+
+.book-list {
+    margin-top: 43px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid dimgray;
+    border-radius: 5px;
+    height: calc(100% - 43px);
+    width: 100%;
+}

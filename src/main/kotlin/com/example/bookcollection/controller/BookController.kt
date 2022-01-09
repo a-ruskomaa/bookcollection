@@ -11,7 +11,7 @@ import java.lang.IllegalArgumentException
 @RequestMapping("api/books")
 class BookController(private val bookService: BookService) {
 
-    @GetMapping("/")
+    @GetMapping()
     fun getBooks(): ResponseEntity<Iterable<BookDTO>> = ResponseEntity.ok(bookService.getAllBooks())
 
     @GetMapping("/{bookId}")
@@ -23,11 +23,11 @@ class BookController(private val bookService: BookService) {
         }
     }
 
-    @PostMapping("/")
-    fun postBook(dto: BookDTO): BookDTO = bookService.addBook(dto)
+    @PostMapping()
+    fun postBook(@RequestBody dto: BookDTO): BookDTO = bookService.addBook(dto)
 
     @PutMapping("/{bookId}")
-    fun putBook(@PathVariable bookId: Long, dto: BookDTO): ResponseEntity<BookDTO> {
+    fun putBook(@PathVariable bookId: Long, @RequestBody dto: BookDTO): ResponseEntity<BookDTO> {
         return try {
             ResponseEntity.ok(bookService.updateBook(bookId, dto))
         } catch (e: NoSuchElementException) {
@@ -42,7 +42,7 @@ class BookController(private val bookService: BookService) {
         return try {
             bookService.deleteBookById(bookId)
             ResponseEntity.noContent().build()
-        } catch (e: IllegalArgumentException) {
+        } catch (e: NoSuchElementException) {
             ResponseEntity.notFound().build()
         }
 

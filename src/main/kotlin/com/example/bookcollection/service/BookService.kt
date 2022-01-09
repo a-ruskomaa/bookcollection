@@ -3,6 +3,7 @@ package com.example.bookcollection.service
 import com.example.bookcollection.data.dto.BookDTO
 import com.example.bookcollection.data.entity.Book
 import com.example.bookcollection.data.repository.BookRepository
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
@@ -30,7 +31,14 @@ class BookService(private val bookRepository: BookRepository) {
         return bookRepository.save(dto.toBook()).toBookDTO()
     }
 
-    fun deleteBookById(id: Long) = bookRepository.deleteById(id)
+    fun deleteBookById(id: Long) {
+        try {
+            bookRepository.deleteById(id)
+        } catch (e: EmptyResultDataAccessException)
+        {
+            throw NoSuchElementException("Id not found")
+        }
+    }
 
 }
 

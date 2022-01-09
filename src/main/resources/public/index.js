@@ -82,6 +82,8 @@ window.onload = function() {
         if (isNaN(id) || id === -1) {
             clearFormValues();
             toggleFormButtons(true);
+            bookList.value = null;
+            form.title.focus()
         } else {
             const selected = bookEntries.find(book => book.id === id);
             populateBookForm(selected);

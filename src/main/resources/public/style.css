@@ -35,11 +35,7 @@
 .form-item > label {
     display:inline-block;
     font-family: sans-serif;
-    margin-bottom: 10px;
-}
-
-.form-buttons {
-    margin: 10px 0;
+    margin-bottom: 5px;
 }
 
 .form-buttons > button {
@@ -51,8 +47,9 @@
     background: lightgrey;
 }
 
-.form-buttons > button:hover {
+.form-buttons > button:not[disabled]:hover {
     background: darkgrey;
+    cursor: pointer;
 }
 
 .book-list {

@@ -47,9 +47,8 @@
     background: lightgrey;
 }
 
-.form-buttons > button:not[disabled]:hover {
+.form-buttons > button:not([disabled]):hover {
     background: darkgrey;
-    cursor: pointer;
 }
 
 .book-list {

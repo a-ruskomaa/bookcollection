@@ -28,7 +28,7 @@ class BookService(private val bookRepository: BookRepository) {
         existing.description = dto.description
         existing.modifiedAt = LocalDateTime.now()
 
-        return bookRepository.save(dto.toBook()).toBookDTO()
+        return bookRepository.save(existing).toBookDTO()
     }
 
     fun deleteBookById(id: Long) {

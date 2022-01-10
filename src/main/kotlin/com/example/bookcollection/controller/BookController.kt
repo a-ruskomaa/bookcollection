@@ -3,6 +3,8 @@ package com.example.bookcollection.controller
 import com.example.bookcollection.data.dto.BookDTO
 import com.example.bookcollection.service.BookService
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.*
 
 
@@ -19,11 +21,11 @@ class BookController(private val bookService: BookService) : BaseController<Book
         ResponseEntity.ok(bookService.getOne(id))
 
     @PostMapping()
-    override fun post(@RequestBody dto: BookDTO): ResponseEntity<BookDTO> =
+    override fun post(@RequestBody @Validated dto: BookDTO): ResponseEntity<BookDTO> =
         ResponseEntity.ok(bookService.add(dto))
 
     @PutMapping("/{id}")
-    override fun put(@PathVariable id: Long, @RequestBody dto: BookDTO): ResponseEntity<BookDTO> =
+    override fun put(@PathVariable id: Long, @RequestBody @Validated dto: BookDTO): ResponseEntity<BookDTO> =
         ResponseEntity.ok(bookService.update(id, dto))
 
     @DeleteMapping("/{id}")
@@ -31,4 +33,5 @@ class BookController(private val bookService: BookService) : BaseController<Book
         bookService.delete(id)
         return ResponseEntity.noContent().build()
     }
+
 }

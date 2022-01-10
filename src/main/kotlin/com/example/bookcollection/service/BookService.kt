@@ -3,25 +3,24 @@ package com.example.bookcollection.service
 import com.example.bookcollection.data.dto.BookDTO
 import com.example.bookcollection.data.entity.Book
 import com.example.bookcollection.data.repository.BookRepository
-import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 @Service
-class BookService(private val bookRepository: BookRepository) {
+class BookService(private val bookRepository: BookRepository) : BaseService<BookDTO, Long> {
 
-    fun getAllBooks() = bookRepository.findAll().map { book -> book.toBookDTO() }
+    override fun getAll(): List<BookDTO> = bookRepository.findAll().map { book -> book.toBookDTO() }
 
-    fun getBookById(id: Long) = bookRepository.findById(id).orElseThrow().toBookDTO()
+    override fun getOne(id: Long): BookDTO = bookRepository.findById(id).orElseThrow().toBookDTO()
 
-    fun addBook(dto: BookDTO) = bookRepository.save(dto.toBook()).toBookDTO()
+    override fun add(dto: BookDTO): BookDTO = bookRepository.save(dto.toBook()).toBookDTO()
 
-    fun updateBook(bookId: Long, dto: BookDTO): BookDTO {
-        if (dto.id != bookId) {
+    override fun update(id: Long, dto: BookDTO): BookDTO {
+        if (dto.id != id) {
             throw IllegalArgumentException("Id's must match")
         }
 
-        val existing = bookRepository.findById(bookId).orElseThrow()
+        val existing = bookRepository.findById(id).orElseThrow()
 
         existing.title = dto.title
         existing.author = dto.author
@@ -31,25 +30,9 @@ class BookService(private val bookRepository: BookRepository) {
         return bookRepository.save(existing).toBookDTO()
     }
 
-    fun deleteBookById(id: Long) {
-        try {
-            bookRepository.deleteById(id)
-        } catch (e: EmptyResultDataAccessException)
-        {
-            throw NoSuchElementException("Id not found")
-        }
-    }
-
+    override fun delete(id: Long): Unit = bookRepository.delete(bookRepository.findById(id).orElseThrow())
 }
 
-fun Book.toBookDTO(): BookDTO {
-    return BookDTO(this.id, this.title, this.author, this.description)
-}
+fun Book.toBookDTO(): BookDTO = BookDTO(this.id, this.title, this.author, this.description)
 
-fun BookDTO.toBook(): Book {
-    return Book(this.id, this.title, this.author, this.description)
-}
-
-
-
-
+fun BookDTO.toBook(): Book = Book(this.id, this.title, this.author, this.description)

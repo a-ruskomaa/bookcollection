@@ -46,14 +46,14 @@ class BookServiceTests {
     }
 
     @Test
-    fun getAllBooks_ReturnsCorrectCount() {
-        val books: List<BookDTO> = service.getAllBooks()
+    fun getAll_ReturnsCorrectCount() {
+        val books: List<BookDTO> = service.getAll()
         assertEquals(2, books.size)
     }
 
     @Test
-    fun getBookById_ReturnsCorrectBook() {
-        val book: BookDTO = service.getBookById(1)
+    fun getOne_ReturnsCorrectBook() {
+        val book: BookDTO = service.getOne(1)
         assertEquals(1, book.id)
         assertEquals("Test title 1", book.title)
         assertEquals("Test author 1", book.author)
@@ -61,10 +61,10 @@ class BookServiceTests {
     }
 
     @Test
-    fun updateBook_UpdatesCorrectProperties() {
+    fun update_UpdatesCorrectProperties() {
         val book = BookDTO(id = 1, title = "Edited title", author = "Edited author", description = "This here is completely new")
 
-        val savedBook = service.updateBook(1, book)
+        val savedBook = service.update(1, book)
 
         assertEquals(book.id, savedBook.id)
         assertEquals(book.title, savedBook.title)
@@ -73,19 +73,19 @@ class BookServiceTests {
     }
 
     @Test
-    fun updateBook_ThrowsWhenWrongId() {
+    fun update_ThrowsWhenWrongId() {
         val book = BookDTO(id = 2, title = "Test title 2", author = "Test author 2", description = "This here is new")
 
-        assertThrows<IllegalArgumentException> { service.updateBook(1, book) }
+        assertThrows<IllegalArgumentException> { service.update(1, book) }
     }
 
     @Test
-    fun deleteBookById_ReturnsWhenCorrectId() {
-        assertDoesNotThrow { service.deleteBookById(1) }
+    fun delete_ReturnsWhenCorrectId() {
+        assertDoesNotThrow { service.delete(1) }
     }
 
     @Test
-    fun deleteBookById_ThrowsWhenWrongId() {
-        assertThrows<NoSuchElementException> { service.deleteBookById(2) }
+    fun delete_ThrowsWhenWrongId() {
+        assertThrows<NoSuchElementException> { service.delete(2) }
     }
 }

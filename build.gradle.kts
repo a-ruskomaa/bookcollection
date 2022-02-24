@@ -42,7 +42,7 @@ allOpen {
 }
 
 application {
-	mainClass.set("com.example.bookcollection.BookCollectionApplication")
+	mainClass.set("com.example.bookcollection.BookCollectionApplicationKt")
 }
 
 tasks.withType<KotlinCompile> {

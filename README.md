@@ -1,4 +1,6 @@
-# buutti_rekry
+# bookcollection
+
+Simple RESTful API created for a demonstration
 
 ## Running the application:
 
